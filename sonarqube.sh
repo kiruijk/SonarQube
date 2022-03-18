@@ -22,7 +22,9 @@ sleep 2
 sudo yum update -y
 sudo yum install java-11-openjdk-devel -y 
 
-if [ $? -ne 0 ] then echo "Installation of Java 11 failed. Cannot proceed with SonarQube installation...."
+if [ $? -ne 0 ] 
+then 
+https://github.com/kiruijk/SonarQube.gitecho "Installation of Java 11 failed. Cannot proceed with SonarQube installation...."
 sleep 2
 exit 2
 fi
@@ -34,7 +36,9 @@ cd /opt
 sudo yum install wget -y
 sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.3.0.51899.zip
 
-if [ $? -ne 0 ] then echo "Installation of latest version of Sonarqube failed...."
+if [ $? -ne 0 ] 
+then 
+echo "Installation of latest version of Sonarqube failed...."
 sleep 2
 exit 3
 fi 
@@ -45,7 +49,9 @@ sleep 2
 sudo yum install unzip -y
 sudo unzip /opt/sonarqube-9.3.0.51899.zip
 
-if [ $? -ne 0 ] then echo "Extraction of files failed...."
+if [ $? -ne 0 ] 
+then 
+echo "Extraction of files failed...."
 sleep 2
 exit 4
 fi 
@@ -57,7 +63,9 @@ sudo chown -R vagrant:vagrant /opt/sonarqube-9.3.0.51899
 cd /opt/sonarqube-9.3.0.51899/bin/linux-x86-64
 ./sonar.sh start
 
-if [ $? -ne 0 ] then echo "Failed to start service...."
+if [ $? -ne 0 ] 
+then 
+echo "Failed to start service...."
 sleep 2
 exit 5
 fi 
@@ -69,7 +77,7 @@ sudo firewall-cmd --permanent --add-port=9000/tcpcd
 sudo firewall-cmd --reload
 
 #Checking IP address
-IP = `hostname -I`
-echo "This is your IP address:$IP"
+IP=`hostname -I |awk '{print$2}'`
+echo "This is your IP address:${IP}"
 sleep 2
-echo "Type the folling into your brower: $IP:9000"
+echo "Type the folling into your brower: ${IP}:9000"
