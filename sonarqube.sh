@@ -23,8 +23,8 @@ sudo yum update -y
 sudo yum install java-11-openjdk-devel -y 
 
 if [ $? -ne 0 ] 
-then 
-https://github.com/kiruijk/SonarQube.gitecho "Installation of Java 11 failed. Cannot proceed with SonarQube installation...."
+then
+echo "Installation of Java 11 failed. Cannot proceed with SonarQube installation...."
 sleep 2
 exit 2
 fi
